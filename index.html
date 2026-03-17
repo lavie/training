@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5-Session Rotation</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #182142;
+      --text: #eef3ff;
+      --muted: #b7c2e6;
+      --line: #2b3767;
+      --accent: #6ee7b7;
+      --accent-2: #7cc7ff;
+      --accent-3: #fbbf24;
+      --danger: #fb7185;
+      --shadow: 0 10px 30px rgba(0,0,0,.28);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #0a0f1d 0%, #0b1020 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 18px 14px 40px;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top right, rgba(124,199,255,.18), transparent 35%),
+                  radial-gradient(circle at top left, rgba(110,231,183,.16), transparent 35%),
+                  linear-gradient(180deg, #151d3b 0%, #10162d 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #d7fff0;
+      background: rgba(110,231,183,.12);
+      border: 1px solid rgba(110,231,183,.3);
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 14px;
+    }
+
+    .pill {
+      font-size: 13px;
+      color: #e8efff;
+      background: rgba(124,199,255,.1);
+      border: 1px solid rgba(124,199,255,.28);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .pill.green {
+      background: rgba(110,231,183,.1);
+      border-color: rgba(110,231,183,.28);
+    }
+
+    .pill.gold {
+      background: rgba(251,191,36,.1);
+      border-color: rgba(251,191,36,.28);
+    }
+
+    .section-title {
+      margin: 18px 0 10px;
+      font-size: 18px;
+    }
+
+    .exercise-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .exercise {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .exercise strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .exercise .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .top-grid {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .info {
+      background: linear-gradient(180deg, rgba(110,231,183,.09), rgba(124,199,255,.08));
+      border: 1px solid rgba(124,199,255,.22);
+      border-radius: var(--radius);
+      padding: 15px;
+    }
+
+    .info h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .info ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .info li + li { margin-top: 6px; }
+
+    .footer-note {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(251,113,133,.08);
+      border: 1px solid rgba(251,113,133,.2);
+      color: #ffd7df;
+      font-size: 14px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (min-width: 760px) {
+      .top-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="grid">
+      <section class="card">
+        <h2>1 — Push</h2>
+        <div class="meta">
+          <span class="pill">40–45 min</span>
+          <span class="pill green">No cardio</span>
+        </div>
+        <div class="exercise-list">
+          <div class="exercise"><strong>A. Push-ups — 3×8–15</strong><div class="note">Stop 1–2 reps before failure.</div></div>
+          <div class="exercise"><strong>B. DB overhead press (or pike push-ups) — 3×6–10</strong><div class="note">Main vertical press for balanced shoulder development.</div></div>
+          <div class="exercise"><strong>C. Side delt raises — 3×12–20</strong><div class="note">Controlled reps, slight pause at the top.</div></div>
+          <div class="exercise"><strong>D. Cable tricep extensions — 3×10–15</strong><div class="note">Any attachment you like.</div></div>
+          <div class="exercise"><strong>E. Overhead tricep extensions — 2×10–15</strong><div class="note">Last accessory to cut if time is tight.</div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2 — Pull + Carries</h2>
+        <div class="meta">
+          <span class="pill">40–45 min</span>
+          <span class="pill gold">Grip + core emphasis</span>
+        </div>
+        <div class="exercise-list">
+          <div class="exercise"><strong>A. Pull-ups — 3 sets</strong><div class="note">Leave 1–2 reps in reserve.</div></div>
+          <div class="exercise"><strong>B. Lat pulldown — 3×8–12</strong><div class="note">Full stretch, drive elbows down.</div></div>
+          <div class="exercise"><strong>C. Shrugs — 3×10–15</strong><div class="note">Brief pause at the top.</div></div>
+          <div class="exercise"><strong>D. Farmer carries — 3 × 30–60 sec</strong><div class="note">Heavy, controlled, upright posture.</div></div>
+          <div class="exercise"><strong>E. Suitcase carries — 2 × 30–45 sec/side</strong><div class="note">Anti-lateral flexion. Stay tall and move slowly.</div></div>
+          <div class="exercise"><strong>F. DB curls — 2–3×8–12</strong><div class="note">Optional superset with reverse curls or wrist curls.</div></div>
+          <div class="exercise"><strong>G. Reverse curls or wrist curls — 2×12–20</strong><div class="note">Drop these first if time is tight. Keep the carries.</div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3 — Legs (Quad + Swings)</h2>
+        <div class="meta">
+          <span class="pill">40–45 min</span>
+          <span class="pill green">Squat day</span>
+        </div>
+        <div class="exercise-list">
+          <div class="exercise"><strong>A. Barbell squats — 4×5–8</strong><div class="note">Do 2–3 warm-up sets before work sets.</div></div>
+          <div class="exercise"><strong>B. Leg extension — 3×10–15</strong><div class="note">Smooth tempo; don’t bounce.</div></div>
+          <div class="exercise"><strong>C. Kettlebell swings — 3×12–20</strong><div class="note">Explosive hinge-driven reps. Treat as power work, not a grind.</div></div>
+          <div class="exercise"><strong>D. Calf raises — 3×10–15</strong><div class="note">Full stretch at bottom, no bouncing.</div></div>
+          <div class="exercise"><strong>E. Abs routine + side planks — 5–7 min</strong><div class="note">Minimal rest. Keep it moving.</div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>4 — Cardio Only (Zone 2)</h2>
+        <div class="meta">
+          <span class="pill">45 min</span>
+          <span class="pill green">Recovery-style day</span>
+        </div>
+        <div class="exercise-list">
+          <div class="exercise"><strong>Zone 2 cardio — 45 min</strong><div class="note">Target around 120 bpm steady.</div></div>
+          <div class="exercise"><strong>Options</strong><div class="note">Bike, incline treadmill walk, or brisk outdoor walk.</div></div>
+          <div class="exercise"><strong>Rule</strong><div class="note">No intervals here. Keep it boring, steady, and repeatable.</div></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>5 — Lower (Posterior + Hips)</h2>
+        <div class="meta">
+          <span class="pill">40–45 min</span>
+          <span class="pill gold">Hinge day</span>
+        </div>
+        <div class="exercise-list">
+          <div class="exercise"><strong>A. Romanian deadlift (RDL) — 4×6–10</strong><div class="note">Slow eccentric, stretch the hamstrings, maintain a clean hinge.</div></div>
+          <div class="exercise"><strong>B. Leg curl machine — 3×10–15</strong><div class="note">Strong squeeze at the top.</div></div>
+          <div class="exercise"><strong>C. Kettlebell swings — 2×15–20</strong><div class="note">Lighter than Day 3. More rhythmic, less max power.</div></div>
+          <div class="exercise"><strong>D. Adductor / Abductor — 3×12–20 each</strong><div class="note">Kept only on this day to avoid back-to-back recovery pressure.</div></div>
+          <div class="exercise"><strong>E. Calf raises — 3×10–15</strong><div class="note">Full ROM.</div></div>
+          <div class="exercise"><strong>F. Abs routine + side planks — 5–7 min</strong><div class="note">Same finisher as Session 3.</div></div>
+        </div>
+        <div class="footer-note">Optional refinement: alternate adductor and abductor emphasis between rotations instead of pushing both hard every time.</div>
+      </section>
+    </div>
+
+    <p class="small" style="margin-top:16px; text-align:center;">Rotation note: keep a simple note like <strong>Next: Session 2</strong> and advance by 1 after each workout.</p>
+  </div>
+</body>
+</html>
