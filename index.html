@@ -49,73 +49,6 @@
       padding: max(28px, env(safe-area-inset-top)) 16px max(38px, env(safe-area-inset-bottom));
     }
 
-    header { padding: 4px 4px 20px; }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 10px;
-      color: var(--cardio);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-      box-shadow: 0 0 14px currentColor;
-      content: "";
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(2.25rem, 11vw, 3.65rem);
-      line-height: 0.96;
-      letter-spacing: -0.055em;
-    }
-
-    .intro {
-      margin: 15px 0 0;
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 22px;
-    }
-
-    .stat {
-      padding: 13px 10px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.035);
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.18rem;
-      line-height: 1;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 0.67rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
     .week-strip {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -291,18 +224,6 @@
 </head>
 <body>
   <div class="page">
-    <header>
-      <p class="eyebrow">Weekly rhythm</p>
-      <h1>Train.<br>Recover. Repeat.</h1>
-      <p class="intro">Three cardio days, two balanced upper-body sessions, one focused lower-body day, and Sunday fully off.</p>
-
-      <div class="summary" aria-label="Plan summary">
-        <div class="stat"><strong>3</strong><span>Cardio</span></div>
-        <div class="stat"><strong>3</strong><span>Strength</span></div>
-        <div class="stat"><strong>1</strong><span>Rest</span></div>
-      </div>
-    </header>
-
     <nav class="week-strip" aria-label="Jump to a day">
       <a class="week-day cardio" href="#monday"><span>Mon</span><i></i></a>
       <a class="week-day upper" href="#tuesday"><span>Tue</span><i></i></a>
